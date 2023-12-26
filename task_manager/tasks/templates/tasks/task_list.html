@@ -1,0 +1,26 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+   <h2>Список задач</h2>
+   <ul>
+       {% for task in tasks %}
+           <li>
+               {{ task.title }} - {{ task.category }}
+               <a href="{% url 'task-update' pk=task.pk %}"><button>Редактировать</button></a>
+               <a href="{% url 'task-delete' pk=task.pk %}"><button>Удалить</button></a>
+               {% if task.status == 'todo' %}
+                   <a href="{% url 'task-done' pk=task.pk %}"><button>Выполнил</button></a>
+               {% endif %}
+           </li>
+       {% endfor %}
+   </ul>
+   <a href="{% url 'task-create' %}"><button>Создать новую задачу</button></a>
+
+   <h2>Выполненые задачи</h2>
+   <ul>
+       {% for task in completed_tasks %}
+           <li>{{ task.title }} - {{ task.category }}</li>
+       {% endfor %}
+   </ul>
+    <a href="{% url 'logout' %}"><button>Logout</button></a>
+{% endblock %}

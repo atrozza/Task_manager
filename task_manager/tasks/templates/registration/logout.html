@@ -1,0 +1,7 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+  <p>Logged out!</p>
+
+  <a href="{% url 'login'%}"><button>Click here to login again.</button></a>
+{% endblock %}
